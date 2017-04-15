@@ -1,6 +1,8 @@
 Este trabalho foi feito por Lucas Félix, para disciplina de compiladores, lecionada por Flávio Schiavonni, no 1º semestre de 2017
 
 O código do analisador léxico funciona da seguinte forma, temos como entrada um código em c, e terá como saída suas listas de tokens: os identificadores, palavras reservadas, literais e etc...
+
+Algumas funções não estão implementadas, como reconhecimento da palavra function, structs, else ifs, além de outras estruturas do c, contudo é possivel ser adicionadas no código sem maiores dificuldades
 ------------------------------------------------------------------------------------------------------------------------------
 Por exemplo, para um código simples como:
 int i@ = 0;
