@@ -4,7 +4,7 @@
 #professor da matéria: Flávio Schiavonni 
 import re
 
-arq_entrada = open("codigo.c", "r");
+arq_entrada = open("helloworld.c", "r");
 #operadores_aritimeticos = ['+', '-', '/', '*'] # categoria 1 
 #palavras_reservadas = ['char','int','float','if''else','for','while','return','continue','break'] # categoria 2 
 #associacao = ['='] # categoria 3 
@@ -360,7 +360,7 @@ def saida(p_identificador, p_comentarios, p_comandos, p_literais, p_operacao_log
 			k=k-1
 		k=posicao
 		flag=0
-		while((codigo[k]!=' ')and(codigo[k]!='\n')and(codigo[k]!='\t')and(codigo[k]!=';')and(codigo[k]!='[')and(codigo[k]!=']')and(codigo[k]!='(')and(codigo[k]!=')')and(codigo[k]!='{')and(codigo[k]!='}')and(codigo[k]!='.')and(codigo[k]!='+')and(codigo[k]!='-')and(codigo[k]!='*')and(codigo[k]!='/')and(codigo[k]!='=')and(codigo[k]!='>')and(codigo[k]!='<')and(codigo[k]!='=')):
+		while((codigo[k]!=' ')and(codigo[k]!='\n')and(codigo[k]!='\t')):
 			if(flag==0):
 				arq.write(' ')
 				aux = str(aux)
@@ -411,7 +411,7 @@ while(i<len(codigo)):
 					i=i+1
 					if(codigo[i]=='k'):
 						i=i+1
-						if((codigo[i]==';')or(codigo[i]==' ')or(codigo[i]=='\t')):
+						if((codigo[i]==';')or(codigo[i]==' ')or(codigo[i]=='\t')or(codigo[i]=='\n')):
 							p_palavras_reservadas.append(posicao_coluna)#coloco na lista de palavras reservadas
 						else:
 							[p_identificador, p_erros] = verifica_identificadores(codigo, posicao_coluna, p_identificador, p_erros)
@@ -434,7 +434,7 @@ while(i<len(codigo)):
 				i=i+1
 				if(codigo[i]=='r'):
 					i=i+1
-					if((codigo[i]==' ')or(codigo[i]=='\t')or(codigo[i]=='=')):
+					if((codigo[i]==' ')or(codigo[i]=='\n')or(codigo[i]=='\t')or(codigo[i]==';')or(codigo[i]=='[')or(codigo[i]==']')or(codigo[i]=='(')or(codigo[i]==')')or(codigo[i]!='{')or(codigo[i]=='}')or(codigo[i]=='.')or(codigo[i]=='+')or(codigo[i]=='-')or(codigo[i]=='*')or(codigo[i]=='/')or(codigo[i]=='>')or(codigo[i]=='<')or(codigo[i]=='=')):
 						p_palavras_reservadas.append(posicao_coluna)#coloco na lista de palavras reservadas 
 					else:
 						[p_identificador, p_erros] = verifica_identificadores(codigo, posicao_coluna, p_identificador, p_erros)
@@ -458,8 +458,7 @@ while(i<len(codigo)):
 								i=i+1
 								if(codigo[i]=='e'):
 									i=i+1
-									if((codigo[i]==';')or(codigo[i]==' ')or(codigo[i]=='\t')):
-		
+									if((codigo[i]!=' ')or(codigo[i]!='\n')or(codigo[i]!='\t')or(codigo[i]!=';')):
 										p_palavras_reservadas.append(posicao_coluna)#insiro na lista de palavras reservadas
 									else:
 										[p_identificador, p_erros] = verifica_identificadores(codigo, posicao_coluna, p_identificador, p_erros)
@@ -493,7 +492,7 @@ while(i<len(codigo)):
 				i=i+1
 				if(codigo[i]=='e'):
 					i=i+1
-					if((codigo[i]==' ')or(codigo[i]=='(')or(codigo[i]=='\t')):
+					if((codigo[i]==' ')or(codigo[i]=='(')or(codigo[i]=='\t')or(codigo[i]=='\n')):
 						p_palavras_reservadas.append(posicao_coluna)#insiro na lista de palavras reservadas
 					else: 
 						[p_identificador, p_erros] = verifica_identificadores(codigo, posicao_coluna, p_identificador, p_erros)
@@ -516,7 +515,7 @@ while(i<len(codigo)):
 					i=i+1
 					if(codigo[i]=='t'):
 						i=i+1
-						if((codigo[i]==' ')or(codigo[i]=='\t')):
+						if((codigo[i]==' ')or(codigo[i]=='\t')or(codigo[i]=='\n')):
 							p_palavras_reservadas.append(posicao_coluna)#insiro na lista de palavras reservadas
 						else:
 							[p_identificador, p_erros] = verifica_identificadores(codigo, posicao_coluna, p_identificador, p_erros)
@@ -888,7 +887,6 @@ while(i<len(codigo)):
 			if(re.match(r'^[a-zA-z0-9(\t ]+$', codigo[i])):
 				p_operacao_logica.append(posicao_coluna)
 			else:
-
 				p_erros.append(posicao_coluna)
 		elif(re.match(r'^[a-zA-z0-9(\t ]+$', codigo[i])):
 			p_atribuicao.append(posicao_coluna)
